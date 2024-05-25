@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function fetchData() {
+            fetch('data')
+                .then(response => response.json())
+                .then(data => {
+                    let dataContainer = document.getElementById('dataContainer');
+                    dataContainer.innerHTML = '';
+                    data.forEach(item => {
+                        let div = document.createElement('div');
+                        div.textContent = item.username;
+                        dataContainer.appendChild(div);
+
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+    </script>
+</head>
+<body >
+<button onclick="fetchData()">Fetch Data</button>
+<div class="chat-container">
+    <div class="chat-person" >chat-person
+        <!--  显示当前聊天的对象-->
+    </div>
+    <div class="chat-display">
+        <!-- 对话展示框将在这里 -->
+    </div>
+    <div class="chat-input">
+        <!--聊天输入框-->
+        <input type="text" id="message-input" placeholder="请输入内容">
+        <button id="submit-btn">发送</button>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
